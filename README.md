@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # AI 판례 추천 시스템
 
 ## 0. 문서 관리
@@ -21,3 +22,8 @@
 - [데이터 분석](https://github.com/wjsrlahrlco1998/AI-Similarity--Analyze-Project/blob/data_module/DataModule.md)
 - [AI 모듈](https://github.com/wjsrlahrlco1998/AI-Similarity--Analyze-Project/blob/ai_module/AIModule.md)
 
+=======
+[Toc]
+
+# 데이터 분석 모듈
+>>>>>>> 46a28c7 (correction README data_module)
