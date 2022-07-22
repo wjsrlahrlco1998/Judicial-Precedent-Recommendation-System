@@ -3,21 +3,21 @@ const app = express()
 const bodyParser = require('body-parser');
 const path = require("path")
 const fs = require('fs')
+const input = require('./routes/input')
+
 
 	
 // View Engine Setup
 app.set("views",path.join(__dirname,"views"))
 app.set("view engine","ejs")
 
+app.use('/', input)
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.locals.pretty = true;
 	
 
-//html 파일 읽기
-app.get('/', (req, res) => {
-	res.render('inputincident');
-  })
+
 
 //save 버튼 클릭시 inputincident 파일 저장
 app.post("/save", (req, res) => {
