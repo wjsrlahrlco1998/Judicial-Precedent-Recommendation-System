@@ -1,35 +1,10 @@
-const Incidents = [
-	{
-	category: 'civil',
-	id: "민사"
-	},
-	{
-	category: 'detective',
-	id: "형사"
-	},
-	{
-	category: 'lyrics',
-	id: "가사"
-	},
-	{
-	category: 'administrative',
-	id: "행정"
-	},
-	{
-	category: 'patent',
-	id: "특허"
-	},
-	{
-	category: 'tax',
-	id: "세무"
-	}
-  ]
 
 
 const express = require("express")
 const app = express()
 const path = require("path")
 const multer = require("multer")
+const index = require('./routes/index')
 
 	
 // View Engine Setup
@@ -37,13 +12,9 @@ app.set("views",path.join(__dirname,"views"))
 app.set("view engine","ejs")
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+app.use('/', index)
 	
 
-app.get('/', (req, res) => {
-	res.render('index', {
-		Incidents,
-	})
-  })
 
 	
 var storage = multer.diskStorage({
@@ -90,6 +61,7 @@ app.post("/upload",function (req, res, next) {
 			res.send(err)
 		}
 		else {
+			// db 연결해서 그...... db로 값 전달
 			console.log(req.body)
 		}
 		res.redirect('/')

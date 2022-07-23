@@ -13,24 +13,18 @@
     <table>
         <tr>
           <th>Category</th>
-          <th></th>
+           <input type="checkbox" id="selectedcivil"    name="categoty[]" value="민사"/> 민사
+        <input type="checkbox" id="selecteddetctive"   name="categoty[]" value="형사"/> 형사
+        <input type="checkbox" id="selectedlyrics" name="categoty[]" value="가사"/> 가사
+        <input type="checkbox" id="selectedadminstrative"  name="categoty[]" value="행정"/> 행정
+      <input type="checkbox" id="selectedpatent" name="categoty[]" value="특허"/> 특허
+        <input type="checkbox" id="selectedtax"  name="categoty[]" value="세무"/> 세무
+     
+          
         </tr>
-        <% Incidents.forEach((Incident) => { %>
-        <tr>
-          <td>
-            <input
-              type='checkbox'
-              name='checked[]'
-              value='<%= Incident.id %>'
-            />
-          </td>
-          <td>
-            <input type='text' value='<%= Incident.id %>' />
-          </td>
-          <td><%= Incident.name %></td>
-        </tr>
-        <% }) %>
+       
       </table>
+      
       <span>Loaded file name:</span>
       <input type="file" name="case" required/> <br>
       <input type="submit" value="submit"> 
