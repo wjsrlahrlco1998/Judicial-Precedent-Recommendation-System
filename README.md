@@ -1,23 +1,31 @@
-# AI 판례 추천 시스템
+# AI 유사 판례 추천 시스템
 
-## 0. 문서 관리
+> 사건과 유사한 판례를 유사도에 따라 추천해주는 시스템
 
-- 링크
+#### 🔜 Version History
 
-  URL : [Notion-AI판례추천시스템](https://opposite-voice-903.notion.site/AI-c8d65d3e88534d88ad1179071d3e8582)
+- version 0.1 (coming soon)
 
-## 1. 시스템 개요
+## :page_with_curl:문서 및 프로젝트 일정
 
-- 정의
+- [Notion](https://opposite-voice-903.notion.site/AI-c8d65d3e88534d88ad1179071d3e8582)
 
-  AI를 이용하여 사용자의 PlainText(사건관련)를 입력받으면 그와 유사한 판례를 자동으로 추천해주는 시스템
 
-- 기능
-  1. 판례 데이터 수집 및 데이터 특성에 맞는 자료구조 생성
-  2. 사용자 입력문장 분석 및 유사판례 추천
 
-## 2. 기능 설명
+## :mag:프로젝트 개요
 
-- [데이터 분석](https://github.com/wjsrlahrlco1998/AI-Similarity--Analyze-Project/blob/data_module/DataModule.md)
-- [AI 모듈](https://github.com/wjsrlahrlco1998/AI-Similarity--Analyze-Project/blob/ai_module/AIModule.md)
+
+
+## 🔩사용 도구
+
+- Front-end
+- Back-end
+
+## 🏠Stakeholder
+
+- [박지성](https://github.com/wjsrlahrlco1998)
+- [송영준](https://github.com/songjy9605)
+- [윤희진](https://github.com/yoonhj99)
+- [박수연](https://github.com/suyeon12)
+- [강지석](https://github.com/pknu-js)
 
