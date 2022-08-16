@@ -37,7 +37,7 @@
 
 ## :house:Stakeholder
 
-- [박지성]() - **P**roject **M**anager
+- [박지성](https://github.com/wjsrlahrlco1998) - **P**roject **M**anager
 - [강지석](https://github.com/pknu-js) - **P**roject **E**ngineer
 - [박수연](https://github.com/suyeon12) - **P**roject **E**ngineer
 - [송영준](https://github.com/songyj9605) - **P**roject **E**ngineer
