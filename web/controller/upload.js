@@ -1,54 +1,42 @@
 const multer = require("multer")
 
-var storage = multer.diskStorage({
-	destination: function (req, file, cb) {
+const storage = multer.memoryStorage();
 
-		// Uploads is the Upload_folder_name
-		cb(null, "uploads")
-	},
-	filename: function (req, file, cb) {
-	cb(null, file.fieldname + "-" + Date.now()+".txt")
-	}
-})
-	
-
-var upload = multer({
-	storage: storage,
-	
-  /*fileFilter: function (req, file, cb){
-	
-		// Set the filetypes, it is optional
-		var filetypes = /txt/;
-		var mimetype = filetypes.test(file.mimetype);
-		var extname = filetypes.test(path.extname(
-					file.originalname).toLowerCase());
-		
-		if (mimetype && extname) {
-			return cb(null, true);
-		}
-	
-		cb("Error: File upload only supports the "
-				+ "following filetypes - " + filetypes);
-	}*/ 
-
-}).single("case");	
-
-
-
-module.exports.upload = function(req, res) {
-	const { checked } = req.body
-
-	upload(req,res,function(err) {
-
-		if(err) {
-			res.send(err)
-		}
-        else {
-            // db 연결해서 그...... db로 값 전달
-			console.log(req.body)
-            res.redirect('/board')
-            // 알림창으로 어디 다운받았는지 확인
-        }
-
-		})
+const fileFilter = (req, file, cb) => {
+    if (file.mimetype == 'text/plain') { // checking the MIME type of the uploaded file
+        cb(null, true);
+    } else {
+        cb(null, false);
     }
+}
+
+const upload = multer({
+    fileFilter,
+    storage
+}).single("case");
+
+
+
+
+module.exports.upload = function(req, res, next) {
+    const { checked } = req.body
+    const file = req.file;
+	console.log(req.file)
+
+
+	if (!file) {
+		const error = new Error("Please upload a file");
+		error.httpStatusCode = 400;
+		return next(error);
+	  } 
+	  const multerText = Buffer.from(file.buffer).toString("utf-8");
+	
+	  const result = {
+		fileText: multerText,
+	  };
+
+	  res.redirect('/board')
+	  console.log(req.body)
+	  console.log(result)
+	};
+	
