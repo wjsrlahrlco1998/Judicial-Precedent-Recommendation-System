@@ -1,8 +1,7 @@
 const multer = require("multer")
-
 const storage = multer.memoryStorage();
 
-const fileFilter = (req, file, cb) => {
+const filefilter = (req, file, cb) => {
     if (file.mimetype == 'text/plain') { // checking the MIME type of the uploaded file
         cb(null, true);
     } else {
@@ -10,33 +9,34 @@ const fileFilter = (req, file, cb) => {
     }
 }
 
-const upload = multer({
-    fileFilter,
-    storage
+var upload = multer({
+    filefilter,
+    storage: storage,
 }).single("case");
-
 
 
 
 module.exports.upload = function(req, res, next) {
     const { checked } = req.body
-    const file = req.file;
-	console.log(req.file)
 
+	upload(req,res,function(err) {
 
-	if (!file) {
-		const error = new Error("Please upload a file");
-		error.httpStatusCode = 400;
-		return next(error);
-	  } 
-	  const multerText = Buffer.from(file.buffer).toString("utf-8");
-	
-	  const result = {
-		fileText: multerText,
-	  };
+		const file = req.file;
+		if(err) {
+			res.send(err)
+		}
+        else {
+			const multerText = Buffer.from(file.buffer).toString("utf-8");
 
-	  res.redirect('/board')
-	  console.log(req.body)
-	  console.log(result)
-	};
-	
+			const result = {
+				fileText: multerText,
+			  }; 
+
+			console.log(req.body)
+			console.log(result)
+            res.redirect('/board')
+
+        }
+
+	})
+}
