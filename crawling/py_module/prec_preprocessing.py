@@ -62,15 +62,20 @@ class PrecedentPrcs:
             if len(x) == 8:
                 x = x[:4] + '-' + x[4:6] + '-' + x[6:8]
             else:
-                x = x[:4] + '00-00'
+                x = x[:4] + '-00-00'
+            
+            return x
         
-        # 1. 선고일자의 특수문자 제거
+        # 1. 선고일자 데이터 타입 변경
+        df['선고일자'] = df['선고일자'].astype('str')
+        
+        # 2. 선고일자의 특수문자 제거
         df['선고일자'] = df['선고일자'].apply(lambda x : x[:-2])
         df['선고일자'] = df['선고일자'].str.replace('[^0-9]', '')
         
-        # 2. 선고일자의 형식 통일 : ex. 2022-08-18 or 2022
+        # 3. 선고일자의 형식 통일 : ex. 2022-08-18 or 2022
         df['선고일자'] = df['선고일자'].apply(apply_date)
-        
+
         return df
     
     def handling_duplicate(self, prec_df):
