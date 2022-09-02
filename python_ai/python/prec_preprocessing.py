@@ -95,11 +95,7 @@ class PrecedentPrcs:
             temp = []
             if '<' in x:
                 soup = BeautifulSoup(x)
-                result = ''
-                for i in soup.find_all('a'):
-                    temp.append(i.text)
-                result = ', '.join(temp)
-                return result
+                return soup.text
             else:
                 return x
         
