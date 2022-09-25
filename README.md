@@ -1,8 +1,8 @@
 # 👵AI 판례 추천 시스템
 
 > User의 사건 내용을 입력받고 그 내용과 가장 비슷한 판례를 추천하는 시스템입니다.
-
-
+>
+> [[Notion]Workspace](https://opposite-voice-903.notion.site/AI-c8d65d3e88534d88ad1179071d3e8582)
 
 ## 📅 Project calendar
 
@@ -14,12 +14,11 @@
 
 ## 🔜Version History
 
-- ProtoType - version 0.1 (예정 : 2022.09.30)
-  - Basic Web
+- ProtoType - version 0.1
+  - Basic Web (streamlit)
   - Basic ML Model
   - Data : precedent - 82467
-
-
+  - [Prototype version 0.1 살펴보기](https://opposite-voice-903.notion.site/4b167381360a49b1a00c424844638abe?v=5ff807a648054562ae1250b655f3af88&p=304fd2ff0b0148acae7d39ce7dd54bdf&pm=s)
 
 ## 💽 Usage data
 
