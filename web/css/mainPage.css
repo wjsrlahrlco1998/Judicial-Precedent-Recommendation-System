@@ -1,0 +1,213 @@
+:root {
+    /* Color */
+    --color-header: #E17F7F;
+    --color-footer : #FFF7F7;
+    --color-footer-font : #868686;
+    --color-icon : #6F6868;
+
+    /* Image Size */
+    --icon-size: 2rem;
+
+    /* Font Size */
+    --font-xlarge: 13rem;
+    --font-large: 5rem;
+    --font-medium: 4rem;
+    --font-small: 2rem;
+    --font-micro: 1.5rem;
+  }
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Noto Sans KR", sans-serif;
+    /*font-size: var(--font-medium);*/
+    transition: all 0.5s;
+}
+
+html {
+    height : 100vh;
+    font-size: 62.5%;
+}
+
+body {
+    height : 100vh;
+    display : flex;
+    justify-content: center;
+    align-items: center;
+}
+
+i {
+    width : var(--icon-size);
+    height : var(--icon-size);
+}
+
+.layout {
+    width : 40vw;
+    height : 70vh;
+    min-width : 500px;
+    min-height : 600px;
+    transition: all 0.5s;
+}
+
+/* 로고 및 아이콘 */
+
+.header {
+    /* color : var(--color-header); */
+    font-weight: bold;
+    display : flex;
+    height : 15vh;
+    width : 100%;
+    justify-content: center;
+    align-items: center;
+    margin-bottom : 7rem;
+}
+
+.logo {
+    font-size : 8vw;
+    color: transparent;
+    background: linear-gradient(to right, var(--color-header), #ecddddf8);
+    -webkit-background-clip: text;
+    display : flex;
+    margin-left : 0.5em;
+}
+i {
+    color : rgb(194, 177, 177);
+}
+
+/* 사건 관리 버튼 */
+
+.caseManager {
+    border : 0.5px solid darkgrey;
+    height : 7vh auto;
+    display : flex;
+    font-size : 1.1vw;
+    justify-content: space-around;
+    line-height : 5vh;
+}
+
+.caseBtns {
+    width : 30%;
+    display : flex;
+    align-items: center;
+    font-size : 1.0vw;
+}
+
+.fileManager {
+    visibility : hidden;
+}
+
+.upload {
+    background-color : var(--color-footer);
+    text-align : center;
+    height : 5vh;
+    width : 18rem;
+    border-radius: 1rem;
+    cursor : pointer;
+    transition: all 0.5s;
+    color : grey;
+}
+
+.upload:hover {
+    background-color : #faebeb;
+    transition: all 0.5s;
+    color : black;
+    border : 0.5px solid darkgrey;
+}
+
+/* 사건 종류 선택창 */
+
+.selectCategory {
+    height : 55vh;
+}
+
+.selectName {
+    height : 4vh;
+    text-align : center;
+    line-height: 4vh;
+    font-size : 1.1vw;
+    margin-bottom : 1em;
+}
+
+.caseCategory{
+    height : 17vh;
+    border : 0.5px solid darkgrey;
+    border-top : none;
+    display : flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.categoryOne, .categoryTwo {
+    display : flex;
+    justify-content: space-around;
+    font-size : 1.1vw;
+    margin-bottom : 0.3em;
+}
+
+.none {
+    visibility: hidden;
+}
+
+.loadFile {
+    font-size : 1.1vw;
+    height : 3vh auto;
+    padding-left : 2em;
+    line-height: 7vh;
+    width : 70%;
+}
+
+.searchBar{
+    text-align: center;
+    width : 40vw;
+    color : var(--color-footer-font);
+    background-color :var(--color-footer);
+    font-size : var(--font-small);
+    height : 5vh;
+    line-height : 5vh;
+
+    min-width : 500px;
+    cursor : pointer;
+
+    transition: all 0.5s;
+}
+
+.searchBar:hover{
+    background: #faebeb;
+    transition: all 0.5s;
+    color : black;
+    border : 0.5px solid darkgrey;
+    border-top : none;
+}
+
+
+.footerName {
+    position : absolute;
+    left : 3rem;
+    bottom : 3rem;
+    font-size : var(--font-micro);
+}
+
+@media screen and (max-width : 1200px){
+    .header {
+        margin-bottom : 2.5rem;
+        padding-top : 4rem;
+    }
+
+    .logo {
+        font-size : var(--font-large);
+    }
+
+    .selectName, .categoryOne, .categoryTwo, .caseManager div, .loadFile, .searchBar {
+        font-size : var(--font-micro);
+    }
+
+    .upload {
+        width : 13rem;
+    }
+}
+
+
+
+

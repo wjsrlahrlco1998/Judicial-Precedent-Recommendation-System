@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- 타이틀 및 로고 설정  -->
+    <title>판례 유사도 검색 사이트</title>
+    <link rel="shortcut icon" type="image/x-icon" href="./images/logo.png">
+
+    <!-- css 파일 및 폰트 설정-->
+    <link rel="stylesheet" type = "text/css" href="../css/mainPage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/cef62898c2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/load.css">
+
+  </head>
+
+  <body>
+    <!-- <form action="/upload" enctype="multipart/form-data" method="POST"> -->
+      <form target = "iframe1" class = "layout" method = 'POST' action = '/upload' enctype = "multipart/form-data">
+        <iframe name="iframe1" style="display:none;"></iframe>
+
+        <div class = "header">
+          <div class = "logo">Cases</div>
+          <div class = "iconWrap"><img class = "icon" src="./images/icon.jpg" style = "width : 10vw;" alt=""></div>
+          <!-- <div class = "icon"><i class="fa-solid fa-face-smile-wink"></i></div> -->
+          <!-- <i class="fa-solid fa-scale-balanced"></i> -->
+        </div>
+
+        <div class = "selectCategory">
+          <div class ="caseManager">
+            <div class = "loadFile">파일 이름 : <span class = "fileName">없음</span></div>
+            <div class = "caseBtns">
+              <!-- <div class = "fileManager" onclick = "location.href = 'http://localhost:8080/fileManager'">사건 관리창</div> -->
+              <!-- <div class = "upload"><input type="file" class="real-upload" accept="txt/*" required multiple style="display: none;" name = "ca">사건 불러오기</div> -->
+              <div class = "upload">사건 불러오기</div>
+                <!-- <input type="file" name="case" accept=".txt"/> <br /><br /> -->
+            </div>
+          </div>
+
+
+          <div class = "caseCategory">
+            <div class = "categoryOne">
+              <div>
+                <input type="checkbox" id="selectedcivil"    name="category[]" value="민사">&nbsp&nbsp민사
+              </div>
+              <div>
+                <input type="checkbox" id="selecteddetctive"   name="category[]" value="형사">&nbsp&nbsp형사
+              </div>
+              <div>
+                <input type="checkbox" id="selectedlyrics" name="category[]" value="가사">&nbsp&nbsp가사
+              </div>
+              <div>
+                <input type="checkbox" id="selectedadminstrative"  name="category[]" value="행정">&nbsp&nbsp행정
+              </div>
+
+            </div>
+            <div class = "categoryTwo">
+              <div>
+                <input type="checkbox" id="selectedpatent" name="category[]" value="특허">&nbsp&nbsp특허
+              </div>
+              <div>
+                <input type="checkbox" id="selectedtax"  name="category[]" value="세무">&nbsp&nbsp세무
+              </div>
+              <div>
+                <input type="checkbox" id="selectedetc"  name="category[]" value="기타">&nbsp&nbsp기타
+              </div>
+              <div class = "none">
+                <input type="checkbox" name = "case8">&nbsp&nbsp공백
+              </div>
+            </div>
+
+          </div>
+
+          <div class = "searchBar">
+            <div>추천 판례 검색 <i class="fa-solid fa-magnifying-glass"></i> </div>
+            <input class = "submitBtn" type="submit" required multiple style="display: none;">
+          </div>
+        </div>
+
+        <div class="loadBox">
+          <svg viewbox="0 0 128 128" width="100%" height="100%">
+              <path class="doc"
+                  d="M0-0.00002,0,3.6768,0,124.32,0,128h4.129,119.74,4.129v-3.6769-120.65-3.6768h-4.129-119.74zm8.2581,7.3537,111.48,0,0,113.29-111.48,0zm13.626,25.048,0,7.3537,57.806,0,0-7.3537zm0,19.12,0,7.3537,84.232,0,0-7.3537zm0,17.649,0,7.3537,84.232,0,0-7.3537zm0,19.12,0,7.3537,84.232,0,0-7.3537z7z" />
+              <path class="magnify"
+                  d="M38.948,10.429c-18.254,10.539-24.468,33.953-14.057,51.986,9.229,15.984,28.649,22.764,45.654,16.763-0.84868,2.6797-0.61612,5.6834,0.90656,8.3207l17.309,29.98c2.8768,4.9827,9.204,6.6781,14.187,3.8013,4.9827-2.8768,6.6781-9.204,3.8013-14.187l-17.31-29.977c-1.523-2.637-4.008-4.34-6.753-4.945,13.7-11.727,17.543-31.935,8.31-47.919-10.411-18.034-33.796-24.359-52.049-13.82zm6.902,11.955c11.489-6.633,26.133-2.7688,32.893,8.9404,6.7603,11.709,2.7847,26.324-8.704,32.957-11.489,6.632-26.133,2.768-32.893-8.941-6.761-11.709-2.785-26.324,8.704-32.957z" />
+              </svg>
+        </div>
+
+      <input class = "real-upload" type="file" name="case" accept=".txt" required multiple style="display: none;"/> <br /><br />
+      <input type="submit" value="Submit" required multiple style="display: none;" />
+    </form>
+
+    <div class = "footerName">송영준 박지성 윤희진 박수연 강지석</div>
+
+  <!-- js 파일 연결-->
+  <script defer src = "./controller/index.js"></script>
+
+  </body>
+
+</html>
