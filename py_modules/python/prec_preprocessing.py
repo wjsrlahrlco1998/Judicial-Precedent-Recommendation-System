@@ -70,7 +70,6 @@ class PrecedentPrcs:
         df['선고일자'] = df['선고일자'].astype('str')
         
         # 2. 선고일자의 특수문자 제거
-        df['선고일자'] = df['선고일자'].apply(lambda x : x[:-2])
         df['선고일자'] = df['선고일자'].str.replace('[^0-9]', '')
         
         # 3. 선고일자의 형식 통일 : ex. 2022-08-18 or 2022
@@ -144,7 +143,13 @@ class PrecedentPrcs:
         # 6. 판례 정렬 : 디폴트 선고일자 내림차순
         df = self.sort(df, standard='선고일자', ascending=False)
         
-        # 7. 인덱스 재설정
+        # 7. 전처리 후 결측치 처리
+        df = self.handling_null(df)
+        
+        # 8. 판례 일련번호 타입변환
+        df['판례일련번호'] = df['판례일련번호'].astype('int')
+        
+        # 9. 인덱스 재설정
         df = df.reset_index(drop=True)
         
         return df
