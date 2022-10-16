@@ -58,6 +58,7 @@ form.addEventListener('submit', (event) => {
             // });
 
             loading.style.display = "none";
+            location.href = "http://localhost:8080/board";
         }, 3000);
     } else {
         event.preventDefault();
