@@ -14,7 +14,6 @@ const buttons = document.querySelector(".buttons");
 const fetchRender = (data) => {
 
     let sort = (selectValue.value === '유사도순') ? data.sort((a,b) => b['유사도'].substring(0,b['유사도'].length - 1) - a['유사도'].substring(0,a['유사도'].length - 1)) : data.sort((a,b) => b['선고날짜'] - a['선고날짜']);
-
     const numOfContent = data.length;
     const maxContent = 5;
     const maxButton = 5;
@@ -23,10 +22,12 @@ const fetchRender = (data) => {
 
     const makeContent = (id) => {
     id -= 1;
+    idx = id + 1;
+    console.log(id)
     const content = document.createElement('tr');
     content.classList.add("content");
     content.innerHTML = `
-        <td>${data[id]["번호"]}</td>
+        <td>${idx}</td>
         <td>${data[id]["판례제목"]}</td>
         <td>${data[id]["사건번호"]}</td>
         <td>${data[id]["선고날짜"]}</td>
