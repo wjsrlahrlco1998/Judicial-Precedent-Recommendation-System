@@ -1,0 +1,20 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Noto Sans KR", sans-serif;
+    font-size : 1.5rem;
+}
+
+.mb-0 {
+    font-size : 1rem;
+    color : darkgrey;
+    cursor : pointer;
+    text-decoration : none;
+}
+
+.alert-heading {
+    font-weight : bold;
+    font-size : 3rem;
+}
+

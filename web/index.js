@@ -6,6 +6,7 @@ const path = require("path")
 const index = require('./routes/index')
 const input = require('./routes/input')
 const board = require('./routes/board')
+const alert = require('./routes/alert')
 
 
 // View Engine Setup
@@ -18,6 +19,7 @@ app.use(express.static('web'))
 app.use('/', index)
 app.get('/input', input)
 app.get('/board', board)
+app.get('/alert', alert)
 
 const example = [{
     번호 : "1",

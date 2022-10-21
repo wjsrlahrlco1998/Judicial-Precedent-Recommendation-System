@@ -53,12 +53,15 @@ form.addEventListener('submit', (event) => {
         const loading = document.querySelector('.loadBox');
         loading.style.display = "block";
         setTimeout(() => {
-            // fetch('http://localhost:8080/users').then((resolve) => resolve.json()).then((data) => {
-            //     location.href = "http://localhost:8080/list";
-            // });
-
-            loading.style.display = "none";
-            location.href = "http://localhost:8080/board";
+            fetch('http://localhost:8080/users').then((resolve) => resolve.json()).then((data) => {
+                if (data.length > 0) {
+                    loading.style.display = "none";
+                    location.href = "http://localhost:8080/board";
+                } else {
+                    loading.style.display = "none";
+                    location.href = "http://localhost:8080/alert";
+                }
+            });
         }, 3000);
     } else {
         event.preventDefault();
