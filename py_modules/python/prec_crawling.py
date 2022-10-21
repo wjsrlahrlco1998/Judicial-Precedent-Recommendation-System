@@ -92,7 +92,7 @@ class PrecedentCrawl:
         
         return prec_df
     
-    def update_crawling(self, org_serial_num):
+    def update_crawling(self, recent_serial_nums):
         '''업데이트를 위한 판례 크롤링 함수'''
          # 1. 판례의 총 개수 추출
         prec_list_response = requests.get(self.__prec_list_url)
@@ -108,6 +108,7 @@ class PrecedentCrawl:
         print(f'총 판례 수\t:\t{self.__totalCnt}\n총 페이지 수\t:\t{self.__totalPage}')
         
         # 3. 판례 크롤링
+        self.__prec_dict = {}
         i = 0
         stop = False
 
@@ -122,7 +123,7 @@ class PrecedentCrawl:
 
                     prec_serial_num = item.find('판례일련번호').text
                     
-                    if prec_serial_num == org_serial_num:
+                    if prec_serial_num in recent_serial_nums:
                         stop = True
                         break
 
