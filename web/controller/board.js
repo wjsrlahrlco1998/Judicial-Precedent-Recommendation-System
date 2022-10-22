@@ -36,6 +36,8 @@ const fetchRender = (data) => {
         <td>${data[id]["다운로드"]}</td>
     `;
 
+    content.style.cursor = "pointer"
+
     return content;
     }
 
@@ -121,13 +123,13 @@ const fetchRender = (data) => {
     render(page);
 }
 
-fetch('http://localhost:8080/users').then((resolve) => resolve.json()).then((data) => {
+fetch('/users').then((resolve) => resolve.json()).then((data) => {
     fetchRender(data);
 });
 
 selectValue.addEventListener('change', () => {
 
-    fetch('http://localhost:8080/users').then((resolve) => resolve.json()).then((data) => {
+    fetch('/users').then((resolve) => resolve.json()).then((data) => {
         while (contents.hasChildNodes()) {
             contents.removeChild(contents.lastChild);
         }
@@ -142,3 +144,23 @@ selectValue.addEventListener('change', () => {
 // 눌렀을 때, 그에 대한 데이터를 서버에 저장시켜놓고,
 // 다른 페이지에서 다시 받아와서 출력하기.
 
+setTimeout(() => {
+    document.querySelectorAll(".content").forEach(addEventListener('click', (e) => {
+        const title = e.target.parentNode.childNodes[3].innerHTML;
+        document.querySelector(".HIDDENVALUE").innerText = title
+        fetch('/users').then((resolve) => resolve.json()).then((data) => {
+
+            for (let i of data) {
+                console.log(i["판례제목"], title)
+                if (i["판례제목"] === title){
+                    console.log("find!")
+                    console.log(i)
+                    localStorage.setItem("userInfo", JSON.stringify(i))
+                    location.href = '/detail'
+                    break;
+                }
+            }
+            // 서버에 데이터 저장 fetch, POST 방식
+        });
+    }))
+})

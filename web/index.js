@@ -7,6 +7,7 @@ const index = require('./routes/index')
 const input = require('./routes/input')
 const board = require('./routes/board')
 const alert = require('./routes/alert')
+const detail = require('./routes/detail')
 
 
 // View Engine Setup
@@ -20,6 +21,7 @@ app.use('/', index)
 app.get('/input', input)
 app.get('/board', board)
 app.get('/alert', alert)
+app.get('/detail', detail)
 
 const example = [{
     번호 : "1",
