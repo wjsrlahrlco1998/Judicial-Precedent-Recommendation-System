@@ -53,13 +53,13 @@ form.addEventListener('submit', (event) => {
         const loading = document.querySelector('.loadBox');
         loading.style.display = "block";
         setTimeout(() => {
-            fetch('http://localhost:8080/users').then((resolve) => resolve.json()).then((data) => {
+            fetch('/users').then((resolve) => resolve.json()).then((data) => {
                 if (data.length > 0) {
                     loading.style.display = "none";
-                    location.href = "http://localhost:8080/board";
+                    location.href = "/board";
                 } else {
                     loading.style.display = "none";
-                    location.href = "http://localhost:8080/alert";
+                    location.href = "/alert";
                 }
             });
         }, 3000);
