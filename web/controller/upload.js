@@ -30,9 +30,12 @@ module.exports.upload = function(req, res, next) {
 			const result = {
 				fileText: multerText,
 			  }
+			
+			const id = Math.random().toString(36).slice(2)
 
 			console.log(req.body)
 			console.log(result)
+			console.log(id)
             res.redirect('/board')
         }
 	})
