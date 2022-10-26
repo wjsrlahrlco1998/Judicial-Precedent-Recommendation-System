@@ -18,8 +18,7 @@ var upload = multer({
 
 
 module.exports.upload = function(req, res, next) {
-    const { checked } = req.body
-
+    
 	upload(req,res,function(err) {
 		const file = req.file;
 		if(err) {
@@ -27,27 +26,30 @@ module.exports.upload = function(req, res, next) {
 		}
 
         else {
+			const checked = req.body.type;
 			const multerText = Buffer.from(file.buffer).toString("utf-8")
-
-			const result = {
-				fileText: multerText,
-			  }
-			
+			const result = multerText
 			const id = Math.random().toString(36).slice(2)
 			
-			const python = spawn('python', ['../../py_modules/Jupyter_notebook/6. prec_compare_similarity.ipynb', req.body, result, id]);
+			
+			var cases = {
+				type : checked,
+				content : result,
+				id : id
+			}
 
+			var jsoncases = JSON.stringify(cases)
+
+			// console.log(cases)
+			console.log(jsoncases)
+
+			const python = spawn('python', ['../../search_run.py', jsoncases]);
+			
             python.stdout.on('data', (function(chunk,error){
                 if(error) console.log("Error",error)
                 var textChunk = chunk.toString('utf8');
                 console.log("return value: "+textChunk)
             }))
-
-			/*
-			console.log(req.body)
-			console.log(result)
-			console.log(id)
-			*/
 			
             res.redirect('/board')
         }
