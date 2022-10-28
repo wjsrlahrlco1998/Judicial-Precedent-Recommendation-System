@@ -15,6 +15,7 @@ const cases_info = {
     // 검색에 필요한 요소
     getCaseSearch: async (판례제목, 판례일련번호, 선고날짜, 사건종류) => {
         const fields = '판례제목, 핀례일련번호, 선고날짜, 사건종류';
+        const number = '판례일련번호'
         const query = `SELECT ${fields} FROM ${table} WHERE 판례일련번호 = "${data.판례일련번호}"`;
         try {
             return await pool.queryParam(query);
@@ -24,6 +25,18 @@ const cases_info = {
         }
     },
     
+    checkNumber: async (판례일련번호) => {
+        const query = `SELECT ${number} FROM ${table} WHERE id="${data.판례일련번호}"`;
+        try {
+            const result = await pool.queryParam(query);
+            if (result == data.판례일련번호) return data.유사도;
+            else return false;
+        } catch (err) {
+            console.log('checkNumber ERROR : ', err);
+            throw err;
+        }
+    },
+
     // 상세보기에 필요한 요소
     getCasesAll: async ()=>{
         const query = `SELECT * FROM ${table} WHERE 판례일련번호 = "${data.판례일련번호}"`;
