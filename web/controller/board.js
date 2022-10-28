@@ -1,6 +1,8 @@
 const pageMove = document.querySelector(".headBtns button");
 pageMove.addEventListener('click', () => this.location.href = "http://localhost:8080/");
 
+const Case = require('../models/cases_info')
+
 const selectOption = (value) => {
     console.log("test", value); // 사건 추천순 가져오기.
 }
@@ -164,3 +166,23 @@ setTimeout(() => {
         });
     }))
 })
+
+module.exports = {
+    getCaseSearch: async(req,res) =>{
+        const searchcase = await Case.getCaseSearch();
+        if(!searchcase){
+            res.send("Error");
+        }else{
+            res.send(searchcase);
+        }
+    },
+
+    getCaseAll: async(req,res) =>{
+        const allcase = await Case.getCaseAll();
+        if(!allcase){
+            res.send("Error");
+        }else{
+            res.send(allcase);
+        }
+    },
+}
