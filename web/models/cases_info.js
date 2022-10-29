@@ -3,7 +3,7 @@ const table = 'cases_info';
 const spawn = require('child_process').spawn;
 
 // python에서 판례일련번호와 유사도를 받아옴
-const result = spawn('python', ['../../py_modules/7. python_modules_test.ipynb']);
+const result = spawn('python', ['../../search_run.py']);
 
 result.stdout.on('data', function(data) {
     JSON.parse(data);
