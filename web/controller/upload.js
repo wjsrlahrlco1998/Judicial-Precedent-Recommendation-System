@@ -1,5 +1,7 @@
 const multer = require("multer")
 const storage = multer.memoryStorage();
+const spawn = require('child_process').spawn;
+
 
 const filefilter = (req, file, cb) => {
     if (file.mimetype == 'text/plain') { // checking the MIME type of the uploaded file
@@ -16,8 +18,7 @@ var upload = multer({
 
 
 module.exports.upload = function(req, res, next) {
-    const { checked } = req.body
-
+    
 	upload(req,res,function(err) {
 		const file = req.file;
 		if(err) {
@@ -25,14 +26,31 @@ module.exports.upload = function(req, res, next) {
 		}
 
         else {
+			const checked = req.body.type;
 			const multerText = Buffer.from(file.buffer).toString("utf-8")
+			const result = multerText
+			const id = Math.random().toString(36).slice(2)
+			
+			
+			var cases = {
+				type : checked,
+				content : result,
+				id : id
+			}
 
-			const result = {
-				fileText: multerText,
-			  }
+			var jsoncases = JSON.stringify(cases)
 
-			console.log(req.body)
-			console.log(result)
+			// console.log(cases)
+			console.log(jsoncases)
+
+			const python = spawn('python', ['../../search_run.py', jsoncases]);
+			
+            python.stdout.on('data', (function(chunk,error){
+                if(error) console.log("Error",error)
+                var textChunk = chunk.toString('utf8');
+                console.log("return value: "+textChunk)
+            }))
+			
             res.redirect('/board')
         }
 	})
