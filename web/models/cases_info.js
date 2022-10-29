@@ -26,7 +26,7 @@ const cases_info = {
     },
     
     checkNumber: async (판례일련번호) => {
-        const query = `SELECT ${number} FROM ${table} WHERE id="${data.판례일련번호}"`;
+        const query = `SELECT * FROM ${table} WHERE id="${data.판례일련번호}"`;
         try {
             const result = await pool.queryParam(query);
             if (result == data.판례일련번호) return data.유사도;
@@ -36,6 +36,20 @@ const cases_info = {
             throw err;
         }
     },
+
+    getCaseByCasenumber: async (판례일련번호) => {
+        // query문 작성 
+        const query = `SELECT * FROM ${table} WHERE 판례일련번호="${data.판례일련번호}"`;
+        // pool module로 전달해서 결과값 받기
+        // try - catch로 ERROR 받기
+        try {
+            return await pool.queryParam(query);
+        } catch (err) {
+            console.log('getCaseByCasenumber ERROR : ', err);
+            throw err;
+        }
+    },
+
 
     // 상세보기에 필요한 요소
     getCasesAll: async ()=>{
