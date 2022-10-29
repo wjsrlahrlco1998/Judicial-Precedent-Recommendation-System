@@ -1,7 +1,7 @@
 const express = require("express")
 const app = express()
 const path = require("path")
-
+var db = require('./config/database')
 
 const index = require('./routes/index')
 const input = require('./routes/input')
