@@ -1,9 +1,6 @@
 const spawn = require("child_process").spawn;
-const json = '{"result":123, "count":42}';
 
-var process = spawn("python", ["test.py", json]);
-
-console.log(json)
+var process = spawn("python", ["search_run.py"]);
 
 process.stdout.on("data", function (data) {
   console.log(data.toString());
