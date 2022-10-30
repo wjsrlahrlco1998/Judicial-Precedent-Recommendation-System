@@ -3,6 +3,7 @@ from py_modules import myDB, prec_preprocessing, model
 
 # Package Load
 import base64
+import json
 import pandas as pd
 import numpy as np
 import time
@@ -15,21 +16,20 @@ db = myDB.CaseLawDB(host="localhost", user="root", password="1234", db="cases")
 db.connection()
 
 ### Modules ###
-# 1. Crawler module 객체 선언
-crawler_module = prec_crawling.PrecedentCrawl()
-# 2. 전처리 객체 선언
+# 1. 전처리 객체 선언
 preprocessing_module = prec_preprocessing.PrecedentPrcs()
-# 3. 임베딩 모델 객체 선언
+# 2. 임베딩 모델 객체 선언
 embedding_module = model.PrecSearchEngine()
 
 ### Functions ###
 # 1. 검색 함수
 def search(input_json):
     # 1. Convert Json to DataFrame
-    input_df = pd.read_json(input_json)
+    json_object = json.loads(input_json)
     # 2. Split Types and Content
-    input_types = input_df['type'].to_list()
-    input_content = input_df['content'][0]
+    input_types = json_object['type']
+    input_content = json_object['content']
+    input_id = json_object['id']
     # 3. Create Query
     query_condition = ""
     if len(input_types) == 1:
@@ -56,9 +56,15 @@ def search(input_json):
     merge_df['유사도'] = merge_df['유사도'].apply(lambda x : round(x, 3) * 100)
     # 11. Convert to JSON : ['판례일련번호', '유사도']
     sub_df = merge_df[['판례일련번호', '유사도']]
-    sub_json = sub_df.to_json(orient='values')
+    sub_json = sub_df.to_json(orient='index')
+    return_json = json.loads(sub_json)
+    return_json["id"] = input_id
     
-    return sub_json
+    return return_json
 
 if __name__ == "__main__":
+    # argv[1] : JSON DATA
+    # JSON[0] : type
+    # JSON[1] : content
+    # JSON[2] : id
     print(search(sys.argv[1]))
