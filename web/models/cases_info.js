@@ -1,5 +1,5 @@
 const pool = require('../modules/pool');
-const table = 'cases_info';
+const table = 'case_info';
 const spawn = require('child_process').spawn;
 
 // python에서 판례일련번호와 유사도를 받아옴
@@ -14,7 +14,7 @@ result.stdout.on('data', function(data) {
 const cases_info = {
     // 검색에 필요한 요소
     getCaseSearch: async (판례제목, 판례일련번호, 선고날짜, 사건종류) => {
-        const fields = '판례제목, 핀례일련번호, 선고날짜, 사건종류';
+        const fields = '판례제목, 판례일련번호, 선고날짜, 사건종류';
         const number = '판례일련번호'
         const query = `SELECT ${fields} FROM ${table} WHERE 판례일련번호 = "${data.판례일련번호}"`;
         try {

@@ -1,6 +1,6 @@
 const multer = require("multer")
 const storage = multer.memoryStorage();
-const spawn = require('child_process').spawn;
+const {spawn} = require('child_process');
 
 
 const filefilter = (req, file, cb) => {
@@ -44,10 +44,9 @@ module.exports.upload = function(req, res, next) {
 			console.log(jsoncases)
 
 			const python = spawn('python', ['../../search_run.py', jsoncases]);
-			
-            python.stdout.on('data', (function(chunk,error){
-                if(error) console.log("Error",error)
-                var textChunk = chunk.toString('utf8');
+
+			python.stdout.on('data', (function(data){
+                var textChunk = data.toString('utf8');
                 console.log("return value: "+textChunk)
             }))
 			
