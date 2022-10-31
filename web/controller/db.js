@@ -6,15 +6,14 @@ module.exports = {
         if(!searchcase){
             res.send("Error");
         }else{
-           /* if (await Case.checkNumber(판례일련번호) != false)
-                searchcase.유사도 = Case.checkNumber */
-            console.log(searchcase)
+            if (await Case.checkNumber(판례일련번호) != false)
+                searchcase.유사도 = Case.checkNumber
             res.send(searchcase);
         }
     },
 
-    getCasesAll: async(req,res) =>{
-        const allcase = await Case.getCasesAll();
+    getCaseAll: async(req,res) =>{
+        const allcase = await Case.getCaseAll();
         if(!allcase){
             res.send("Error");
         }else{
