@@ -1,29 +1,53 @@
-const pool = require('../modules/pool');
-const table = 'case_info';
-const spawn = require('child_process').spawn;
+const db = require('../config/database');
+const pool = require('../modules/pool')
+const table = 'cases_info';
+const python1 = require('../controller/upload')
 
-// python에서 판례일련번호와 유사도를 받아옴
-const result = spawn('python', ['../../search_run.py']);
+const data = python1.upload
 
-result.stdout.on('data', function(data) {
-    JSON.parse(data);
-    console.log(data.toString());
-});
+
+// result를 비동기로 불어온다면!! await.poolParam(sql) 먼저 시작 후 console.log가 찍힌다면,,~
+module.exports = {
+    getCaseSearch : async function(판례제목, 판례일련번호, 선고날짜, 사건종류){
+        const sql = `SELECT * FROM ${table} WHERE 판례일련번호 = '220263'`;
+        var result
+        try{
+                result  = await pool.queryParam(sql);
+                console.log("전달 받은 값 : " + result);
+
+        } catch(err){
+            console.log(err)
+            throw err
+        }
+    }
+
+    
+}
+
+
+
+/*
+//const sql = "select 사건번호 from cases_info where 판례일련번호 = '156163'"
+var result
+
+
 
 
 const cases_info = {
     // 검색에 필요한 요소
     getCaseSearch: async (판례제목, 판례일련번호, 선고날짜, 사건종류) => {
-        const fields = '판례제목, 판례일련번호, 선고날짜, 사건종류';
-        const number = '판례일련번호'
-        const query = `SELECT ${fields} FROM ${table} WHERE 판례일련번호 = "${data.판례일련번호}"`;
-        try {
-            return await pool.queryParam(query);
-        } catch(err){
-            console.log('getCasesSearch err : ', err);
-            throw err;
-        }
+        try{
+            result  = pool.queryParam(sql);
+           console.log("전달 받은 값 : " + result);
+            return await result
+   } catch(err){
+       console.log(err)
+       throw err
+   }
     },
+    
+
+    
     
     checkNumber: async (판례일련번호) => {
         const query = `SELECT * FROM ${table} WHERE id="${data.판례일련번호}"`;
@@ -63,4 +87,8 @@ const cases_info = {
     }
 }
 
-module.exports = cases_info;
+
+
+// module.exports = cases_info;
+
+*/
