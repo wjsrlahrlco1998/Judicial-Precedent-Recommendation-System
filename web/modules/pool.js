@@ -1,5 +1,7 @@
-const poolPromise = require('../config/database');
+const mysql = require('../config/database');
 
+
+/*
 module.exports = { 
     queryParam: async (query) => {
         return new Promise ( async (resolve, reject) => {
@@ -57,5 +59,33 @@ module.exports = {
                 reject(err);
             }
         });
+    }
+}
+
+*/
+
+
+//Promise, await. . . 비동기!!!!!
+
+module.exports = {
+    queryParam : function(query){
+        
+        mysql.getConnection((err,connection)=>{
+            if(err) throw err;
+            console.log("connection_pool GET");
+
+            res = connection.query(query, (err, result, fields)=>{ // Query문 전송
+                if(err) {
+                    console.log(err)
+                    throw error
+                }
+                else{
+                    console.log(result)
+                    return result
+                    }
+                }
+            );
+            connection.release(); // Connectino Pool 반환
+        })
     }
 }
