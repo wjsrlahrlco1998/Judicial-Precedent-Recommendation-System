@@ -1,7 +1,7 @@
 const multer = require("multer")
 const storage = multer.memoryStorage();
-const spawn = require('child_process').spawn;
-
+const iconv = require('iconv-lite');
+var textChunk;
 
 const filefilter = (req, file, cb) => {
     if (file.mimetype == 'text/plain') { // checking the MIME type of the uploaded file
@@ -42,17 +42,23 @@ module.exports.upload = function(req, res, next) {
 
 			// console.log(cases)
 			// console.log(jsoncases)
-
-			const python = spawn('python', ['../../search_run.py', jsoncases]);
+			const spawn = require('child_process').spawn;
+			const process = spawn('python', ['search_run.py', jsoncases]);
 			
-            textChunk = python.stdout.on('data', (function(data){
-                var textChunk = data.toString('utf8');
-                console.log("return value: "+textChunk)
-            }))
+			// 한글 깨짐 해결
+			let rs
+			// 결과 데이터 -> cases_info로 넘겨주기
+			// 필요한것만 쪼개서 Query
+            process.stdout.on('data', function (data) {
+				rs = iconv.decode(data, 'euc-kr');
+    			console.log(rs);
+				//console.log(data.toString())
+            });
 			
-			console.log(jsoncases)
-			console.log(textChunk)
+			// console.log(jsoncases)
+			// console.log(textChunk)
             res.redirect('/board')
         }
 	})
+
 }

@@ -56,6 +56,7 @@ def search(input_json):
     merge_df['유사도'] = merge_df['유사도'].apply(lambda x : round(x, 3) * 100)
     # 11. Convert to JSON : ['판례일련번호', '유사도']
     sub_df = merge_df[['판례일련번호', '유사도']]
+    sub_df = sub_df[sub_df['유사도'] >= 50]
     sub_json = sub_df.to_json(orient='columns')
     return_json = json.loads(sub_json)
     return_json["id"] = input_id
@@ -67,5 +68,4 @@ if __name__ == "__main__":
     # JSON[0] : type
     # JSON[1] : content
     # JSON[2] : id
-    print(sys.argv[1])
     print(search(sys.argv[1]))

@@ -1,5 +1,7 @@
 const pool = require('../modules/pool.js');
-const table = 'cases_info';
+const user = require('../controller/upload');
+const table = 'case_info';
+
 /*되는 코드
 module.exports = {
     getCaseSearch :async function(){
@@ -19,7 +21,8 @@ module.exports = {
 
 module.exports = {
     getCaseSearch :async function(){
-        const sql = "select 사건번호 from cases_info where 판례일련번호 = '220263'"
+        // 판례번호 많이 들어감
+        const sql = "select 사건번호 from case_info where 판례일련번호 = 200321 "
         var result
         try{
                 result  = await pool.queryParam(sql);
