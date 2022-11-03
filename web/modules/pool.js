@@ -36,14 +36,13 @@ module.exports = {
                         throw error
                     }
                     else{
-                        console.log(result)
+                        // console.log(result)
                         resolve(result)
                         }
                     }
                 );
                 connection.release(); // Connectino Pool 반환
             })
-
         })
     }
         
