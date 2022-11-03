@@ -8,8 +8,7 @@ const table = 'cases_info';
 
 module.exports ={
     getCaseSearch : async function(){
-        try{
-            
+        try{            
             //여기서 판례일련번호를 이용하여 필요한데이터를 가져온다.
 
             str = upload.getData();
@@ -17,6 +16,7 @@ module.exports ={
 
             var sim_result = await similarity.similar(str)
             console.log("유사도 : ", sim_result)
+
 
             const sql = `select 사건번호 from ${table} where 판례일련번호 = '220263'`
             var result  = await pool.queryParam(sql);
