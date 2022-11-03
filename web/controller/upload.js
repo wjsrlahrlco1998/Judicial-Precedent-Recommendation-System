@@ -1,7 +1,7 @@
 const multer = require("multer")
 const storage = multer.memoryStorage();
 const iconv = require('iconv-lite');
-var textChunk;
+let rs
 
 const filefilter = (req, file, cb) => {
     if (file.mimetype == 'text/plain') { // checking the MIME type of the uploaded file
@@ -46,7 +46,6 @@ module.exports.upload = function(req, res, next) {
 			const process = spawn('python', ['search_run.py', jsoncases]);
 			
 			// 한글 깨짐 해결
-			let rs
 			// 결과 데이터 -> cases_info로 넘겨주기
 			// 필요한것만 쪼개서 Query
             process.stdout.on('data', function (data) {
@@ -60,5 +59,5 @@ module.exports.upload = function(req, res, next) {
             res.redirect('/board')
         }
 	})
-
+	return rs
 }

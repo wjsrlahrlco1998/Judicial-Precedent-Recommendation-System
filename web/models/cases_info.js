@@ -28,6 +28,7 @@ module.exports = {
                 result  = await pool.queryParam(sql);
                 result1 = JSON.stringify(result)
                 console.log("전달 받은 값 : " + result1);
+                console.log(user.upload)
 
         } catch(err){
             console.log(err)
