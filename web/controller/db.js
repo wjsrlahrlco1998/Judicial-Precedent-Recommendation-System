@@ -3,11 +3,10 @@ const Case = require('../models/cases_info')
 module.exports = {
     getCaseSearch: async(req,res) =>{
         const searchcase = await Case.getCaseSearch();
+        console.log("cases_info에서 받은 내용 : ", searchcase)
         if(!searchcase){
             res.send("Error");
         }else{
-            if (await Case.checkNumber(판례일련번호) != false)
-                searchcase.유사도 = Case.checkNumber
             res.send(searchcase);
         }
     },
