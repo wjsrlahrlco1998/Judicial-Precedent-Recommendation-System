@@ -75,7 +75,7 @@ def update_crawling():
 
 if __name__ == "__main__":
     argument = sys.argv[1]
-    if argement == "first":
+    if argument == "first":
         first_crawling()
-    elif argement == "update":
+    elif argument == "update":
         update_crawling()
