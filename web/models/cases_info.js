@@ -1,35 +1,28 @@
+const similarity = require('../controller/similar.js')
 const pool = require('../modules/pool.js');
-const user = require('../controller/upload');
-const table = 'case_info';
+const upload = require('../controller/upload')
+const table = 'cases_info';
 
-/*되는 코드
-module.exports = {
-    getCaseSearch :async function(){
-        const sql = "select 사건번호 from caselaw3 where 판례일련번호 = '156163'"
-        var result
-        try{
-                result  = pool.queryParam(sql);
-                console.log("전달 받은 값 : " + result);
 
-        } catch(err){
-            console.log(err)
-            throw err
-        }
-    }
-}
-*/
+//주석 제외 실행됨
 
-module.exports = {
-    getCaseSearch :async function(){
-        // 판례번호 많이 들어감
-        const sql = "select 사건번호 from case_info where 판례일련번호 = 200321 "
-        var result
-        try{
-                result  = await pool.queryParam(sql);
-                result1 = JSON.stringify(result)
-                console.log("전달 받은 값 : " + result1);
-                console.log(user.upload)
+module.exports ={
+    getCaseSearch : async function(){
+        try{            
+            //여기서 판례일련번호를 이용하여 필요한데이터를 가져온다.
 
+            str = upload.getData();
+            console.log("getData에서 가져오는 값 : ", str)
+
+            var sim_result = await similarity.similar(str)
+            console.log("유사도 : ", sim_result)
+
+
+            const sql = `select 사건번호 from ${table} where 판례일련번호 = '220263'`
+            var result  = await pool.queryParam(sql);
+            var jsonStr = JSON.stringify(result);
+            console.log("DB에서 전달 받은 값 : " + jsonStr);
+            
         } catch(err){
             console.log(err)
             throw err
