@@ -13,6 +13,7 @@ module.exports = {
             string = string.replace("유사도:","")
 
             string = string.replace(/[0-9]*:/g,"")
+            string = string.replace("rn","")
             string = string.split(/,/g)
 
 
