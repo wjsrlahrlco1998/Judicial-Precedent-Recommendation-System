@@ -83,18 +83,17 @@ module.exports ={
             var result  = await pool.queryParam(sql);
             var jsonStr = JSON.stringify(result);
             
-            
-            //split.cases에서 하나의 배열에 [사건명, 판례일련번호, 선고일자, 사건종류명]만 나타나도록 한다.
-            console.log("DB에서 전달 받은 값 : " + jsonStr);
-            var casesStr = await split.cases(jsonStr)
-            console.log("split에서 전달받은값 : " + casesStr)
-            
-            //유사도에 관한 정보를 allCases[0]내에 전부, 판례와관련된 내용 전부를 allCases[1]에 넣는다.
-            var allCases = []
-            allCases[0] = sim
-            allCases[1] = casesStr
+            sim_index = sim.length;
+            sim_index = JSON.stringify(sim_index);           
+            for(i = 0; i < Number(sim_index) ; i++)
+            result[i].유사도 = sim[i]
 
-            return allCases
+            jsonStr = JSON.stringify(result);
+
+            console.log("result : ", result);
+
+            return result
+            
         } catch(err){
             console.log(err)
             throw err
