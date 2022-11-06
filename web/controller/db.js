@@ -11,12 +11,12 @@ module.exports = {
         }
     },
 
-    getCaseAll: async(req,res) =>{
-        const allcase = await Case.getCaseAll();
-        if(!allcase){
+    getCaseDetail: async(req,res) =>{
+        const detailcase = await Case.getCaseDetail();
+        if(!detailcase){
             res.send("Error");
         }else{
-            res.send(allcase);
+            res.send(detailcase);
         }
     },
 }
