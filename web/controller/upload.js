@@ -48,8 +48,8 @@ exports.upload = function(req, res, next) {
 			global.jsoncases=jsoncases 
 			//console.log(jsoncases)
 
-			res.redirect('/board' )
-			//})
+			setTimeout(()=>{
+				res.redirect('/board' )},1*60*1000)
 			}
 
 		})
