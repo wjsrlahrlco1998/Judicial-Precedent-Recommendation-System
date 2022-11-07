@@ -7,7 +7,7 @@ const iconv = require('iconv-lite');
 
 module.exports= {
 	//similar: async function(req, res, next, err){
-		similar:function(data){
+		get_similarity:function(data){
 			return new Promise(async function(resolve, reject) {
 			setTimeout(function(){	
 				const python = spawn('python', ['search_run.py', data]);

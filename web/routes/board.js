@@ -5,6 +5,6 @@ const CaseController = require('../controller/db')
 
 //html 파일 읽기
 router.get('/board', CaseController.getCaseSearch)
-router.get('/board/:casenumber', CaseController.getCaseAll)
+router.get('/board/:casenumber', CaseController.getCaseDetail)
 
 module.exports = router;
