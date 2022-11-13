@@ -23,6 +23,7 @@ app.get('/input', input)
 app.get('/board', board)
 app.get('/alert', alert)
 app.get('/detail', detail)
+app.get('/cases_board', cases_board)
 
 // const example = [{
 //     번호 : "1",
@@ -767,9 +768,9 @@ const example = [
 ]
 
 
-app.get("/cases_board", (request, response) => {
-    response.send(example);
-})
+// app.get("/cases_board", (request, response) => {
+//     response.send(example);
+// })
 
 app.listen(8080,function(error) {
 	if(error) throw error
