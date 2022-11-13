@@ -9,12 +9,12 @@ module.exports= {
 	//similar: async function(req, res, next, err){
 		similar:function(data){
 			return new Promise(async function(resolve, reject) {
-			setTimeout(function(){	
-				const python = spawn('python', ['search_run.py', data]);
-			
+			setTimeout(function(){
+				const python = spawn('python', ['test.py', data]);
+
 				python.stdout.on('data', (async function(data){
 					//문자화
-					
+
 					var dataString = iconv.decode(data, 'euc-kr')
 					var dataString = dataString.toString()
 					//'[',']' 문자열 삭제 밑 구분자 ','를 이용하여 문자열 분할

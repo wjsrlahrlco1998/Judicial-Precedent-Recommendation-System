@@ -36,19 +36,19 @@ exports.upload = function(req, res, next) {
 			//global.result = result
 
 			const id = Math.random().toString(36).slice(2)
-			
+
 			// let dataString;
 			var cases = {
 				type : checked,
 				content : result,
 				id : id
 			}
-					
+
 			var jsoncases = JSON.stringify(cases)
-			global.jsoncases=jsoncases 
+			global.jsoncases=jsoncases
 			//console.log(jsoncases)
 
-			res.redirect('/board' )
+			res.redirect('/boards' )
 			//})
 			}
 

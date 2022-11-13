@@ -1,13 +1,13 @@
 data = []
 module.exports = {
     sim : function(string){
-           
+
             string = string.replace(/\s/g,"")
             var reg = /[\{\}\[\]\/?;|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi
 
             if(reg.test(string)){
 
-                string = string.replace(reg, "");    
+                string = string.replace(reg, "");
             }
             string = string.replace("판례일련번호:","")
             string = string.replace("유사도:","")
@@ -20,7 +20,7 @@ module.exports = {
             number = [];
             sim = [];
             for(i=0;i<string.length/2;i++){
-                number[i] = string[i] 
+                number[i] = string[i]
                 sim[i] = string[i+string.length/2]
             }
             data[0] = number;
@@ -28,20 +28,20 @@ module.exports = {
 
             return data;
         },
-        
+
         cases : function(string){
-            
+
             string = string.replace(/\s/g,"")
-            var reg = /[\{\}\[\]\/?;|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi 
+            var reg = /[\{\}\[\]\/?;|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi
             if(reg.test(string)){
-                string = string.replace(reg, "");    
+                string = string.replace(reg, "");
             }
-           
+
             string = string.replace("사건명:", "");
             string = string.replace("판례일련번호:", "");
             string = string.replace("사건종류명:", "");
             string = string.replace("선고일자:", "");
-           
+
 
             string = string.split(/,/g)
             const cases = []
@@ -58,7 +58,7 @@ module.exports = {
             }
             console.log(caseTitle.length)
             for(i=0;i<caseTitle.length; i++){
-               
+
                cases.push([caseTitle[i],caseNumber[i],caseType[i],caseDate[i]])
             }
             return cases

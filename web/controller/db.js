@@ -1,4 +1,6 @@
 const Case = require('../models/cases_info')
+const express = require("express")
+const app = express()
 
 module.exports = {
     getCaseSearch: async(req,res) =>{
@@ -7,7 +9,7 @@ module.exports = {
         if(!searchcase){
             res.send("Error");
         }else{
-            res.send(searchcase);
+            res.json(searchcase)
         }
     },
 

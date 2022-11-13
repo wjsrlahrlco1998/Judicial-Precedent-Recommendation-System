@@ -53,7 +53,8 @@ form.addEventListener('submit', (event) => {
         const loading = document.querySelector('.loadBox');
         loading.style.display = "block";
         setTimeout(() => {
-            fetch('/users').then((resolve) => resolve.json()).then((data) => {
+            fetch('/cases_board').then((resolve) => resolve.json()).then((data) => {
+                console.log(data.length)
                 if (data.length > 0) {
                     loading.style.display = "none";
                     location.href = "/board";
@@ -70,6 +71,5 @@ form.addEventListener('submit', (event) => {
 })
 
 
-// fetch('http://localhost:8080/users').then((resolve) => resolve.json()).then((data) => console.log(data));
 
 
