@@ -2,7 +2,7 @@ const similarity = require('../controller/similar.js')
 const pool = require('../modules/pool.js');
 const upload = require('../controller/upload')
 const split = require('../controller/split');
-const table = 'cases_info';
+const table = 'case_info';
 //주석 제외 실행됨
 
 module.exports ={
@@ -42,7 +42,7 @@ module.exports ={
             //판례일련번호로 데이터베이스 select문 실행한다.
             //판례일련번호 in(number)를 사용할 거면 판례일련번호의 형태가 int형이어야 한다.
             //만약 판례일련번호가 string 형태라면 판례일련번호 in ( number)구분이 오류가 나 실행 되지 않는다.
-            const sql = `select 사건명,판례일련번호,선고일자,사건종류명 from ${table} where 판례일련번호 IN( ${number} );`
+            const sql = `select * from ${table} where 판례일련번호 IN( ${number} );`
             var result  = await pool.queryParam(sql);
             
             sim_index = sim.length; // 유사도의 길이를 확인(json형태)
