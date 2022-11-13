@@ -1,4 +1,4 @@
-# 👵AI 판례 추천 시스템
+👵AI 판례 추천 시스템
 
 > User의 사건 내용을 입력받고 그 내용과 가장 비슷한 판례를 추천하는 시스템입니다.
 >
@@ -8,7 +8,8 @@
 
 - 03.14 ~ 03.26 : 주제 선정
 - 04.01 ~ 06.24 : 시스템 설계 및 데이터 수집
-- 06.27 ~  : Web Front-End & Back-End, Text Embedding Model Training, 시스템 설계 개선 
+- 06.27 ~ 08.31 : Text Embedding Model Training, 시스템 설계 개선
+- 09.01~10.31 : modules test, python - nodejs 연동, Web 구현완료(계획)
 
 
 
@@ -28,7 +29,27 @@
 
 ## :hammer:Tool
 
+- Web
 
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=CSS3&logoColor=white"/>
+
+  <img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=Node.js&logoColor=white"/>
+
+  <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=white"/>
+
+- AI
+
+  <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=Python&logoColor=white"/>
+
+  <img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=flat-square&logo=TensorFlow&logoColor=white"/>
+
+- DB
+
+  <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=MySQL&logoColor=white"/>
+
+- Prototype
+
+  <img src="https://img.shields.io/badge/Streamlit-FF4B4B?style=flat-square&logo=Streamlit&logoColor=white"/>
 
 ## 🔎 Project outline
 

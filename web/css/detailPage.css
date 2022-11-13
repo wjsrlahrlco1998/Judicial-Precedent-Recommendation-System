@@ -22,7 +22,9 @@
     margin: 0;
     box-sizing: border-box;
     font-family: "Noto Sans KR", sans-serif;
+    font-size : 0.8vw;
     /*font-size: var(--font-medium);*/
+    transition: all 0.5s;
 }
 
 html {
@@ -43,9 +45,17 @@ i {
 }
 
 .layout {
-    width : 40vw;
-    height : 70vh;
+    width : 80vw;
+    height : 80vh;
     margin-bottom : 10vh;
+}
+
+.caseManagerLayout {
+    margin-top : 1rem;
+}
+
+button {
+    width : 80px;
 }
 
 .header {
@@ -53,11 +63,98 @@ i {
     font-weight: bold;
     display : flex;
     height : 15vh;
-    width : 40vw;
+    width : 100%;
     justify-content: center;
     align-items: center;
     margin-bottom : 5rem;
 }
+
+.head {
+    display : flex;
+    width : 100%;
+    justify-content: space-between;
+    height : 9vh;
+}
+.head > div {
+    border-right : 1px solid darkgrey;
+    border-bottom : 1px solid darkgrey;
+    width : 100%;
+    padding : 1rem;
+    display : flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.head2 {
+    display : flex;
+    width : 100%;
+    justify-content: space-between;
+    height : 4vh;
+}
+.head2 > div {
+    border-right : 1px solid darkgrey;
+    border-bottom : 1px solid darkgrey;
+    width : 100%;
+    padding : 1rem;
+    display : flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.head3 {
+    border-right : 1px solid darkgrey;
+    border-bottom : 1px solid darkgrey;
+    width : 100%;
+    padding : 1rem;
+    height : 3vh;
+    display: flex;
+    align-items: center;
+}
+
+.head4 {
+    border-right : 1px solid darkgrey;
+    border-bottom : 1px solid darkgrey;
+    width : 100%;
+    padding : 1rem;
+    overflow: auto;
+    height : 12vh;
+}
+
+.head5, .head7, .head9, .head11 {
+    border-right : 1px solid darkgrey;
+    border-bottom : 1px solid darkgrey;
+    width : 100%;
+    padding : 1rem;
+    height : 3vh;
+    display: flex;
+    align-items: center;
+}
+
+.head6 {
+    border-right : 1px solid darkgrey;
+    border-bottom : 1px solid darkgrey;
+    width : 100%;
+    padding : 1rem;
+    overflow: auto;
+    height : 7vh;
+}
+
+.head8, .head10 {
+    border-right : 1px solid darkgrey;
+    border-bottom : 1px solid darkgrey;
+    width : 100%;
+    padding : 1rem;
+    overflow: auto;
+    height : 6vh;
+}
+
+.head12 {
+    width : 100%;
+    padding : 1rem;
+    overflow: auto;
+    height : 6vh;
+}
+
 
 .logo {
     font-size : 8vw;
@@ -72,11 +169,12 @@ i {
 }
 
 .caseManagerLayout {
-    height: 55vh;
-    width : 40vw;
+    height: 65vh;
+    width : 80vw;
     border : 0.5px solid darkgrey;
     font-size : 2vw;
 }
+
 
 
 .footerName {

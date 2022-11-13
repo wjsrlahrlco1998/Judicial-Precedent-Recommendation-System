@@ -1,61 +1,49 @@
-const poolPromise = require('../config/database');
+const mysql = require('../config/database');
+/*
+module.exports = {
+    queryParam : function(query){
+        mysql.getConnection((err,connection)=>{
+            if(err) throw err;
+            console.log("connection_pool GET");
 
-module.exports = { 
-    queryParam: async (query) => {
-        return new Promise ( async (resolve, reject) => {
-            try {
-                const pool = await poolPromise;
-                const connection = await pool.getConnection();
-                try {
-                    const result = await connection.query(query);
-                    pool.releaseConnection(connection);
-                    resolve(result);
-                } catch (err) {
-                    pool.releaseConnection(connection);
-                    reject(err);
+            res = connection.query(query, (err, result, fields)=>{ // Query문 전송
+                if(err) {
+                    console.log(err)    
+                    throw error
                 }
-            } catch (err) {
-                reject(err);
-            }
-        });
-    },
-    queryParamArr: async (query, value) => {
-        return new Promise(async (resolve, reject) => {
-            try {
-                const pool = await poolPromise;
-                const connection = await pool.getConnection();
-                try {
-                    const result = await connection.query(query, value);
-                    pool.releaseConnection(connection);
-                    resolve(result);
-                } catch (err) {
-                    pool.releaseConnection(connection);
-                    reject(err);
+                else{
+                    console.log(result)
+                    return result
+                    }
                 }
-            } catch (err) {
-                reject(err);
-            }
-        });
-    },
-    Transaction: async (...args) => {
-        return new Promise(async (resolve, reject) => {
-            try {
-                const pool = await poolPromise;
-                const connection = await pool.getConnection();
-                try {
-                    await connection.beginTransaction();
-                    args.forEach(async (it) => await it(connection));
-                    await connection.commit();
-                    pool.releaseConnection(connection);
-                    resolve(result);
-                } catch (err) {
-                    await connection.rollback()
-                    pool.releaseConnection(connection);
-                    reject(err);
-                }
-            } catch (err) {
-                reject(err);
-            }
-        });
+            );
+            connection.release(); // Connectino Pool 반환
+        })
     }
+}
+*/
+
+module.exports = {
+    queryParam : function(query){
+        return new Promise((resolve, reject) => {
+            mysql.getConnection((err,connection)=>{
+                if(err) throw err;
+                console.log("connection_pool GET");
+    
+                res = connection.query(query, (err, result, fields)=>{ // Query문 전송
+                    if(err) {
+                        console.log(err)    
+                        throw error
+                    }
+                    else{
+                        // console.log(result)
+                        resolve(result)
+                        }
+                    }
+                );
+                connection.release(); // Connectino Pool 반환
+            })
+        })
+    }
+        
 }

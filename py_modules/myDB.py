@@ -24,10 +24,10 @@ class CaseLawDB:
             db_connection_str = f'mysql+pymysql://{self.__user}:{self.__password}@{self.__host}:{self.__port}/{self.__db}'
             db_connection = create_engine(db_connection_str)
             self.__connect = db_connection.connect()
-            print("DB Connection Success")
+            # print("DB Connection Success")
         except Exception as e:
             print(e)
-            print("DB Connection Fail")
+            # print("DB Connection Fail")
     
     def insert(self, df:pd.DataFrame, table, if_exists='append', index=False):
         '''Data 추가'''
@@ -38,7 +38,7 @@ class CaseLawDB:
                  if_exists=if_exists,
                  index=index)
         
-        print(f"insert time : {round(time.time() - start, 2)}(sec)")
+        # print(f"insert time : {round(time.time() - start, 2)}(sec)")
     
     def read(self, sql):
         '''Data 읽기'''
@@ -46,7 +46,7 @@ class CaseLawDB:
         
         read_df = pd.read_sql(sql, self.__connect)  # SQL문으로 읽은 데이터를 DataFrame 형태로 가져오기
         
-        print(f"read time : {round(time.time() - start, 2)}(sec)")
+        # print(f"read time : {round(time.time() - start, 2)}(sec)")
         
         return read_df
 
