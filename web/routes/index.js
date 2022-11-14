@@ -1,10 +1,7 @@
-
 const Incidents = require('../index.js')
 const express = require('express')
 const router = express.Router()
 const multer = require("multer")
-
-
 
 var upload = require('../controller/upload')
 var input = require('../controller/input')

@@ -53,7 +53,8 @@ form.addEventListener('submit', (event) => {
         const loading = document.querySelector('.loadBox');
         loading.style.display = "block";
         setTimeout(() => {
-            fetch('/users').then((resolve) => resolve.json()).then((data) => {
+            fetch('/cases_board').then((resolve) => resolve.json()).then((data) => {
+                console.log(data.length)
                 if (data.length > 0) {
                     loading.style.display = "none";
                     location.href = "/board";
@@ -62,14 +63,9 @@ form.addEventListener('submit', (event) => {
                     location.href = "/alert";
                 }
             });
-        }, 3000);
+        }, 10000);
     } else {
         event.preventDefault();
     } // 검색 애니메이션, 서버로 검색 자원 판별 요청 후 주소 변경
             // 검색 시간 맞추려면? 고민..!
 })
-
-
-// fetch('http://localhost:8080/users').then((resolve) => resolve.json()).then((data) => console.log(data));
-
-

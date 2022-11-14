@@ -57,7 +57,7 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-bottom : 0.5rem;
-    font-size : 1.1vw;
+    font-size : 1vw;
 }
 
 .headBtns button {
@@ -98,30 +98,36 @@ body {
 
 table {
     border : 1px solid black;
-    font-size : 1.1vw;
+    font-size : 1vw;
     text-align : center;
     margin:auto;
     width : 80vw;
-    min-width : 500px;
 }
 
 thead {
     background-color : var(--color-footer);
+    height : 3vh;
 }
 
 th, td {
     border : 1px solid black;
 }
 
-i {
-    color : rgb(194, 177, 177);
+tr {
+    font-size : 0.9vw;
 }
 
+.layout {
+    width : 80vw;
+}
 
-@media screen and (max-width : 1200px){
-    table, td, th, .headBtns {
-        font-size : 1.5rem;
-    }
+.layout > .buttons {
+    display : flex;
+    justify-content: center;
+}
+
+i {
+    color : rgb(194, 177, 177);
 }
 
 .buttons {
@@ -151,4 +157,11 @@ i {
 
 ion-icon {
     padding-top: 0.05rem;
+}
+
+@media screen and (max-width : 1200px){
+    thead {
+        height : 1rem;
+        line-height: 1rem;
+    }
 }

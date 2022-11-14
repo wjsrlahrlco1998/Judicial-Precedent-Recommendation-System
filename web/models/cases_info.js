@@ -19,15 +19,15 @@ module.exports ={
             8. similar에서 spawn 수행
             9. similar에서 유사도 반환
             10. 유사도 받은 후 sql실행
-            */     
+            */
             //사건 내용을 가져온다.
             case_contents = upload.getData();
-            
-            
+
+
             //similarity.similar에서 유사도와 판례일련번호 값을 가져온다.
             //similar.js내의 함수 similar를 similarity로 바꾸어주었다.
             var sim_result = await similarity.get_similarity(case_contents)
-           
+
             //split내에서 판례일련번호와 유사도 순으로 분리시켜준다.
             //분리된 내용을 number와 sim에 넣는다.(number에는 판례일련번호, sim에는 유사도)
             //split.sim()내의 매개변수로는 similarity.similarity에서 구해진 결과를 넣어야한다.
@@ -37,34 +37,34 @@ module.exports ={
 
             //제대로 들어가는지 확인
             console.log("판례일련번호 : ", number, "유사도 : ", sim);
-            
-            
+
+
             //판례일련번호로 데이터베이스 select문 실행한다.
             //판례일련번호 in(number)를 사용할 거면 판례일련번호의 형태가 int형이어야 한다.
             //만약 판례일련번호가 string 형태라면 판례일련번호 in ( number)구분이 오류가 나 실행 되지 않는다.
             const sql = `select * from ${table} where 판례일련번호 IN( ${number} );`
             var result  = await pool.queryParam(sql);
-            
+
             sim_index = sim.length; // 유사도의 길이를 확인(json형태)
             sim_index = JSON.stringify(sim_index); // json형태의 sim_index를 string형태로 변환
- 
+
             //json형태의 result에 유사도를 추가하여 유사도 항목에 sim을 넣는다(sim : 유사도)
             for(i = 0; i < Number(sim_index) ; i++)
             result[i].유사도 = sim[i]
-            
+
             //json형태로 반환해준다.
             return result
-            
+
         } catch(err){
             console.log(err)
             throw err
         }
     },
-    
+
 
     getCaseDetail : async function(){
         try{
-            
+
             /*
             1. getCaseAll -> getCaseDetail
             2. 웹(프엔)에서 다운로드 버튼을 클릭하면 해당 행의 판례일련번호를 받아옴 -> sql 구문 실행
@@ -77,7 +77,7 @@ module.exports ={
             var result  = await pool.queryParam(sql);
 
             return result
-        
+
         } catch(err){
             console.log(err)
             throw err
