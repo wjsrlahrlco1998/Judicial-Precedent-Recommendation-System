@@ -1,3 +1,5 @@
+var data;
+
 const pageMove = document.querySelector(".headBtns button");
 pageMove.addEventListener('click', () => this.location.href = "http://localhost:8080/");
 
@@ -126,23 +128,24 @@ const fetchRender = (data) => {
     render(page);
 }
 
-fetch('/cases_board').then((resolve) => resolve.json()).then((data) => {
-    fetchRender(data);
+fetch('/cases_board').then((resolve) => resolve.json()).then((recieve_data) => {
+    fetchRender(recieve_data);
+    data = recieve_data
 });
 
 selectValue.addEventListener('change', () => {
 
-    fetch('/cases_board').then((resolve) => resolve.json()).then((data) => {
-        while (contents.hasChildNodes()) {
-            contents.removeChild(contents.lastChild);
-        }
+    // fetch('/cases_board').then((resolve) => resolve.json()).then((data) => {
+    //     while (contents.hasChildNodes()) {
+    //         contents.removeChild(contents.lastChild);
+    //     }
 
-        while (buttons.hasChildNodes()) {
-            buttons.removeChild(buttons.lastChild);
-        }
+    //     while (buttons.hasChildNodes()) {
+    //         buttons.removeChild(buttons.lastChild);
+    //     }
         fetchRender(data);
     });
-})
+// })
 
 // 눌렀을 때, 그에 대한 데이터를 서버에 저장시켜놓고,
 // 다른 페이지에서 다시 받아와서 출력하기.
@@ -158,7 +161,7 @@ const interval = setInterval(() => {
 
             } else {
                 const title = e.target.parentNode.childNodes[3].innerHTML;
-                fetch('/cases_board').then((resolve) => resolve.json()).then((data) => {
+                // fetch('/cases_board').then((resolve) => resolve.json()).then((data) => {
                     for (let i of data) {
                         if (i["사건명"] === title){
                             console.log("find!")
@@ -170,7 +173,7 @@ const interval = setInterval(() => {
                         }
                     }
                     // 서버에 데이터 저장 fetch, POST 방식
-                });
+                // });
                 isStop = true;
             }
         });

@@ -3,7 +3,8 @@ const Case = require('../models/cases_info')
 module.exports = {
     getCaseSearch: async(req,res) =>{
         const searchcase = await Case.getCaseSearch();
-        console.log("cases_info에서 받은 내용 : ", searchcase)
+        // console.log("cases_info에서 받은 내용 : ", searchcase)
+        console.log("1")
         if(!searchcase){
             res.send("Error");
         }else{

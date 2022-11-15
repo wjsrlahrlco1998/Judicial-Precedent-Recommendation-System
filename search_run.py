@@ -57,7 +57,7 @@ def search(input_json):
     # 11. Convert to JSON : ['판례일련번호', '유사도']
     sub_df = merge_df[['판례일련번호', '유사도']]
     # 12. Filtering : 유사도가 50%가 넘는 판례만 선별함.
-    sub_df = sub_df[sub_df['유사도'] >= 50]
+    sub_df = sub_df[sub_df['유사도'] >= 45]
     # 13. DataFrame -> Json 변환
     sub_json = sub_df.to_json(orient='columns')
     return_json = json.loads(sub_json)

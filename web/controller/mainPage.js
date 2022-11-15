@@ -63,7 +63,7 @@ form.addEventListener('submit', (event) => {
                     location.href = "/alert";
                 }
             });
-        }, 10000);
+        }, 15000);
     } else {
         event.preventDefault();
     } // 검색 애니메이션, 서버로 검색 자원 판별 요청 후 주소 변경
