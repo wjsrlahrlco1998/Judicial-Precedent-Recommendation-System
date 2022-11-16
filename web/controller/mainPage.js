@@ -2,6 +2,7 @@
 const realUpload = document.querySelector('.real-upload');
 const upload = document.querySelector('.upload');
 const fileName = document.querySelector('.fileName');
+localStorage.setItem("fetchInfo", true);
 
 // 파일 업로드 이벤트
 upload.addEventListener('click', () => realUpload.click());

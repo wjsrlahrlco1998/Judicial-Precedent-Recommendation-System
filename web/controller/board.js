@@ -1,4 +1,4 @@
-var data;
+let data;
 
 const pageMove = document.querySelector(".headBtns button");
 pageMove.addEventListener('click', () => this.location.href = "http://localhost:8080/");
@@ -127,11 +127,18 @@ const fetchRender = (data) => {
 
     render(page);
 }
-
-fetch('/cases_board').then((resolve) => resolve.json()).then((recieve_data) => {
-    fetchRender(recieve_data);
-    data = recieve_data
-});
+if (localStorage.getItem("fetchInfo") === 'true'){
+    fetch('/cases_board').then((resolve) => resolve.json()).then((receive_data) => {
+        fetchRender(receive_data);
+        data = receive_data;
+        localStorage.setItem("allInfo", JSON.stringify(data));
+        localStorage.setItem("fetchInfo", false);
+    });
+} else {
+    const receive_data = JSON.parse(localStorage.getItem("allInfo"))
+    data = receive_data;
+    fetchRender(receive_data);
+}
 
 selectValue.addEventListener('change', () => {
 
@@ -179,30 +186,3 @@ const interval = setInterval(() => {
         });
     })
 }, 100)
-
-// if (isStop == true) {
-//     console.log('stop')
-//     clearInterval(interval);
-// }
-
-
-
-// for (let i = 0; i < contentArr.length; i++){
-//     contentArr[i].addEventListener('click', (e) => {
-//         const title = e.target.parentNode.childNodes[3].innerHTML;
-//         fetch('/cases_board').then((resolve) => resolve.json()).then((data) => {
-//             for (let i of data) {
-//                 if (i["사건명"] === title){
-//                     console.log("find!")
-//                     console.log(i)
-//                     localStorage.setItem("userInfo", JSON.stringify(i))
-//                     location.href = '/detail'
-//                     break;
-//                 }
-//             }
-//             // 서버에 데이터 저장 fetch, POST 방식
-//         });
-//     });
-// }
-
-// console.log(contentArr)
