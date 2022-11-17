@@ -1,4 +1,6 @@
 let data;
+const loading = document.querySelector('.loadBox');
+loading.style.display = "block";
 
 const pageMove = document.querySelector(".headBtns button");
 pageMove.addEventListener('click', () => this.location.href = "http://localhost:8080/");
@@ -128,13 +130,20 @@ const fetchRender = (data) => {
     render(page);
 }
 if (localStorage.getItem("fetchInfo") === 'true'){
+    loading.style.display = "block";
+
     fetch('/cases_board').then((resolve) => resolve.json()).then((receive_data) => {
+        if (receive_data.length < 0) {
+            location.href = '/alert';
+        }
         fetchRender(receive_data);
         data = receive_data;
         localStorage.setItem("allInfo", JSON.stringify(data));
         localStorage.setItem("fetchInfo", false);
+        loading.style.display = "none";
     });
 } else {
+    loading.style.display = "none";
     const receive_data = JSON.parse(localStorage.getItem("allInfo"))
     data = receive_data;
     fetchRender(receive_data);
